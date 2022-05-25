@@ -32,8 +32,6 @@ if (userAlreadyExists) {
   return response.status(400).json({ error: "User already exists!"})
 }
 
-const id = uuidv4()
-
 users.push({
   id: uuidv4(),
   name,
@@ -62,8 +60,6 @@ app.post('/todos', checksExistsUserAccount, (request, response) => {
   const { title, deadline } = request.body
   const { user } = request
 
-  const id = uuidv4()
-
   const todo = {
     id: uuidv4(),
     title,
@@ -71,7 +67,7 @@ app.post('/todos', checksExistsUserAccount, (request, response) => {
     deadline: new Date(deadline),
     created_at: new Date()
   }
-  user.todos.push(todo)
+    user.todos.push(todo)
 
   return response.status(201).send(todo)
 });
